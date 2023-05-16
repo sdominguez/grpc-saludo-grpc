@@ -17,7 +17,7 @@ protobuf {
     }
     plugins {
         grpc {
-            artifact = 'io.grpc:protoc-gen-grpc-java:1.50.0'
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.54.1'
         }
     }
     generateProtoTasks {
@@ -30,13 +30,13 @@ protobuf {
 sourceSets.main.java.srcDir new File(buildDir, 'generated/source')
 
 dependencies {
-    runtimeOnly 'io.grpc:grpc-netty-shaded:1.50.0'
-    implementation 'io.grpc:grpc-protobuf:1.50.0'
-    implementation 'io.grpc:grpc-stub:1.50.0'
+    runtimeOnly 'io.grpc:grpc-netty-shaded:1.54.1'
+    implementation 'io.grpc:grpc-protobuf:1.54.1'
+    implementation 'io.grpc:grpc-stub:1.54.1'
     compileOnly 'org.apache.tomcat:annotations-api:6.0.53' // necessary for Java 9+
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
 }
 
 test {

@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.50.0)",
+    value = "by gRPC proto compiler (version 1.54.1)",
     comments = "Source: saludo/holamundo.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class SaludoServiceGrpc {
@@ -185,73 +185,53 @@ public final class SaludoServiceGrpc {
 
   /**
    */
-  public static abstract class SaludoServiceImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      */
-    public void saludo(com.proto.saludo.SaludoRequest request,
+    default void saludo(com.proto.saludo.SaludoRequest request,
         io.grpc.stub.StreamObserver<com.proto.saludo.SaludoResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSaludoMethod(), responseObserver);
     }
 
     /**
      */
-    public void saludoMuchasVeces(com.proto.saludo.SaludoRequest request,
+    default void saludoMuchasVeces(com.proto.saludo.SaludoRequest request,
         io.grpc.stub.StreamObserver<com.proto.saludo.SaludoResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSaludoMuchasVecesMethod(), responseObserver);
     }
 
     /**
      */
-    public io.grpc.stub.StreamObserver<com.proto.saludo.SaludoRequest> saludoStream(
+    default io.grpc.stub.StreamObserver<com.proto.saludo.SaludoRequest> saludoStream(
         io.grpc.stub.StreamObserver<com.proto.saludo.SaludoResponse> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getSaludoStreamMethod(), responseObserver);
     }
 
     /**
      */
-    public io.grpc.stub.StreamObserver<com.proto.saludo.SaludoRequest> saludoStreamBidireccional(
+    default io.grpc.stub.StreamObserver<com.proto.saludo.SaludoRequest> saludoStreamBidireccional(
         io.grpc.stub.StreamObserver<com.proto.saludo.SaludoResponse> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getSaludoStreamBidireccionalMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getSaludoMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.proto.saludo.SaludoRequest,
-                com.proto.saludo.SaludoResponse>(
-                  this, METHODID_SALUDO)))
-          .addMethod(
-            getSaludoMuchasVecesMethod(),
-            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
-              new MethodHandlers<
-                com.proto.saludo.SaludoRequest,
-                com.proto.saludo.SaludoResponse>(
-                  this, METHODID_SALUDO_MUCHAS_VECES)))
-          .addMethod(
-            getSaludoStreamMethod(),
-            io.grpc.stub.ServerCalls.asyncClientStreamingCall(
-              new MethodHandlers<
-                com.proto.saludo.SaludoRequest,
-                com.proto.saludo.SaludoResponse>(
-                  this, METHODID_SALUDO_STREAM)))
-          .addMethod(
-            getSaludoStreamBidireccionalMethod(),
-            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
-              new MethodHandlers<
-                com.proto.saludo.SaludoRequest,
-                com.proto.saludo.SaludoResponse>(
-                  this, METHODID_SALUDO_STREAM_BIDIRECCIONAL)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service SaludoService.
    */
-  public static final class SaludoServiceStub extends io.grpc.stub.AbstractAsyncStub<SaludoServiceStub> {
+  public static abstract class SaludoServiceImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return SaludoServiceGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service SaludoService.
+   */
+  public static final class SaludoServiceStub
+      extends io.grpc.stub.AbstractAsyncStub<SaludoServiceStub> {
     private SaludoServiceStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -297,8 +277,10 @@ public final class SaludoServiceGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service SaludoService.
    */
-  public static final class SaludoServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<SaludoServiceBlockingStub> {
+  public static final class SaludoServiceBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<SaludoServiceBlockingStub> {
     private SaludoServiceBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -327,8 +309,10 @@ public final class SaludoServiceGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service SaludoService.
    */
-  public static final class SaludoServiceFutureStub extends io.grpc.stub.AbstractFutureStub<SaludoServiceFutureStub> {
+  public static final class SaludoServiceFutureStub
+      extends io.grpc.stub.AbstractFutureStub<SaludoServiceFutureStub> {
     private SaludoServiceFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -359,10 +343,10 @@ public final class SaludoServiceGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final SaludoServiceImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(SaludoServiceImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -399,6 +383,39 @@ public final class SaludoServiceGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getSaludoMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.proto.saludo.SaludoRequest,
+              com.proto.saludo.SaludoResponse>(
+                service, METHODID_SALUDO)))
+        .addMethod(
+          getSaludoMuchasVecesMethod(),
+          io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+            new MethodHandlers<
+              com.proto.saludo.SaludoRequest,
+              com.proto.saludo.SaludoResponse>(
+                service, METHODID_SALUDO_MUCHAS_VECES)))
+        .addMethod(
+          getSaludoStreamMethod(),
+          io.grpc.stub.ServerCalls.asyncClientStreamingCall(
+            new MethodHandlers<
+              com.proto.saludo.SaludoRequest,
+              com.proto.saludo.SaludoResponse>(
+                service, METHODID_SALUDO_STREAM)))
+        .addMethod(
+          getSaludoStreamBidireccionalMethod(),
+          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            new MethodHandlers<
+              com.proto.saludo.SaludoRequest,
+              com.proto.saludo.SaludoResponse>(
+                service, METHODID_SALUDO_STREAM_BIDIRECCIONAL)))
+        .build();
   }
 
   private static abstract class SaludoServiceBaseDescriptorSupplier

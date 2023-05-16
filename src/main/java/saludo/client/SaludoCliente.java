@@ -23,21 +23,26 @@ public class SaludoCliente {
                 .usePlaintext()
                 .build();
 
-        //saludarUnario(ch);
+        saludarUnario(ch);
 
         //recibirSaludoStream(ch);
 
         //enviarSaludosStream(ch);
 
-        saludoStreamBidireccional(ch);
+        //saludoStreamBidireccional(ch);
 
         System.out.println("Apagando..");
         ch.shutdown();
     }
 
     public static void saludarUnario(ManagedChannel ch){
-        SaludoServiceGrpc.SaludoServiceBlockingStub stub = SaludoServiceGrpc.newBlockingStub(ch);
-        SaludoResponse response = stub.saludo(SaludoRequest.newBuilder().setNombre("SAUL").build());
+        SaludoServiceGrpc.SaludoServiceBlockingStub stub =
+                SaludoServiceGrpc.newBlockingStub(ch);
+        SaludoResponse response =
+                stub.saludo(SaludoRequest
+                        .newBuilder()
+                        .setNombre("SAUL")
+                        .build());
 
         System.out.println("SALUDO: "+response.getResult());
     }
